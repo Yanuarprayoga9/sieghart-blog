@@ -1,8 +1,5 @@
 # FRONTEND
-client/node_modules
-client/.env
+node_modules
+.env
 
 
-# API
-api/node_modules
-api/.env
