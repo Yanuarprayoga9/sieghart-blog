@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import Projects from './pages/Projects'
 import SignUp from './pages/SignUp'
 import Header from './components/Header'
+import NotFound from './pages/404'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="*" element={<NotFound />} />
         
       </Routes>
         
