@@ -1,23 +1,31 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const counterSlice = createSlice({
-  name: 'counter',
+  name: "user",
   initialState: {
-    value: 0
+    currentUser:null,
+    loading: null,
+    message: null,
+    
   },
   reducers: {
-    incremented: state => {
+    signInStart: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.value += 1
+      state.loading = true;
     },
-    decremented: state => {
-      state.value -= 1
+    signInSuccess: (state, actions) => {
+      state.user += actions.payload;
+      state.loading = false;
+      state.message = null
+    },
+    signInFailure: (state,actions) => {
+      state.message = actions.payload
+      state.loading = false;
     }
-  }
-})
+  },
+});
 
-export const { incremented, decremented } = counterSlice.actions
-
+export const { signInStart, signInSuccess,signInFailure } = counterSlice.actions;
