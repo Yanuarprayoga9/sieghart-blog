@@ -1,31 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-export const counterSlice = createSlice({
+const initialState = {
+  currentUser: null,
+  loading: null,
+  error: null,
+  token:null
+};
+ const userSlice = createSlice({
   name: "user",
-  initialState: {
-    currentUser:null,
-    loading: null,
-    message: null,
-    
-  },
+  initialState,
   reducers: {
     signInStart: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
       state.loading = true;
+      state.error = null;
     },
     signInSuccess: (state, actions) => {
-      state.user += actions.payload;
+      console.log(actions.payload)
+      state.currentUser = actions.payload.user;
       state.loading = false;
-      state.message = null
+      state.error = null;
+      state.token = actions.payload.token;
     },
-    signInFailure: (state,actions) => {
-      state.message = actions.payload
+    signInFailure: (state, actions) => {
+      state.error = actions.payload;
       state.loading = false;
-    }
+    },
+    signOut: (state) => {
+      state.currentUser = null;
+      state.loading = false;
+      state.error = null;
+    },
+    
   },
 });
 
-export const { signInStart, signInSuccess,signInFailure } = counterSlice.actions;
+export const { signInStart, signInSuccess, signInFailure,signOut } =
+  userSlice.actions;
+  export default userSlice.reducer;

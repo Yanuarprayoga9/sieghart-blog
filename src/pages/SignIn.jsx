@@ -2,27 +2,45 @@ import { PageTitle } from '../components/PageTitle'
 import { useDispatch, useSelector } from 'react-redux'
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/user-slice'
 import { ButtonComp } from '../components/Button'
-
+import { useNavigate } from 'react-router-dom';
+import baseUrl from '../../constant/baseUrl';
+import axios from 'axios';
 const SignIn = () => {
   const dispatch = useDispatch()
   const loading = useSelector((state => state.user.loading))
   const message = useSelector((state => state.user.message))
-  const onSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const success = Math.floor(Math.random() * 2);
-      console.log(success)
-      if (success == 1) {
-        dispatch(signInStart());
-        setTimeout(() => {
-          dispatch(signInSuccess('test'));
-          console.log('success', loading)
-        }, 2000)
-      }else {
-        throw Error
 
+      dispatch(signInStart());
+      const res = await fetch(`${baseUrl}/auth/signin`, {
+        // const res = await fetch('http://localhost:5555/v1/auth/signin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "username": "user",
+          "email": "trial123@gmail.com",
+          "password": "trial123"
+        }),
+      });
+      // const res = axios.post(`${baseUrl}/auth/signin`,{
+      //   "username": "user",
+      //   "email": "trial123@gmail.com",
+      //   "password": "trial123"
+      // })
+      const data = await res.json();
+      console.log(data.user._id)
+      if (data.success === false) {
+        dispatch(signInFailure(data.message));
       }
 
+      if (res.ok) {
+        dispatch(signInSuccess(data));
+        navigate('/');
+      }
     } catch (error) {
       dispatch(signInFailure('Login Failed'));
 
