@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom"
 import PropTypes from 'prop-types';
 
 
@@ -14,6 +13,8 @@ export const PageContainer = ({ children,title }) => {
 }
 
 PageContainer.propTypes = {
-    title: PropTypes.string
+    title: PropTypes.string,
+    children: PropTypes.node, // Menambahkan PropTypes untuk children
+
 }
 export default PageContainer 

@@ -1,19 +1,13 @@
-import { useDispatch, useSelector } from "react-redux"
-// import {  } from "../redux/user/user-slice";
 import PageContainer from "../components/PageContainer";
 
-export default function Dashboard() {
-  const state = useSelector(state => state.user)
-  console.log(state)
-  const dispatch = useDispatch();
+// import { useUsers } from "../../hooks/useUser";
 
-  const onClicked = () => {
-    // dispatch(loginSuccess())
-  }
+export default function Dashboard() {
+  // const [loading,data] = useUsers();
   return (
     <div>
       <PageContainer title={'Dashboardil Page'}>
-         <h1>test</h1>
+         
       </PageContainer>
     </div>
   )

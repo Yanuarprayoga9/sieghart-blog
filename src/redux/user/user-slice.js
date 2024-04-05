@@ -3,7 +3,6 @@ const initialState = {
   currentUser: null,
   loading: null,
   error: null,
-  token:null
 };
  const userSlice = createSlice({
   name: "user",
@@ -14,11 +13,9 @@ const initialState = {
       state.error = null;
     },
     signInSuccess: (state, actions) => {
-      console.log(actions.payload)
-      state.currentUser = actions.payload.user;
+      state.currentUser = actions.payload;
       state.loading = false;
       state.error = null;
-      state.token = actions.payload.token;
     },
     signInFailure: (state, actions) => {
       state.error = actions.payload;
