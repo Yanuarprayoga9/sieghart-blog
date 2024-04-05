@@ -9,3 +9,4 @@ export const PageTitle = ({title}) => {
 PageTitle.propTypes = {
     title:PropTypes.string
 }
+
