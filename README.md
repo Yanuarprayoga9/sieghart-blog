@@ -14,6 +14,6 @@ setup env
 ```
  .env
 ```json
-"VITE_FIREBASE_KEY=AIzaSyDdmOAwH9ULGyvJidzXa2Yfj-OF-6CLYYo"
+"VITE_FIREBASE_KEY="
 "VITE_ENVIRONMENT=dev"
 ```
