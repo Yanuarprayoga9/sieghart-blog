@@ -41,7 +41,7 @@ export default function OAuth() {
     }
 
     return (
-        <button type='button' disabled={loading} className='text-black bg-white border-2 hover:bg-slate-50 focus:ring-4 focus:outline-none mt-3 focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' onClick={handleGoogleClick}>
+        <button type='button' disabled={loading} className='text-black bg-white border-2 hover:bg-slate-50 focus:ring-4 dark:bg-white mt-3 focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center  dark:focus:ring-white-800' onClick={handleGoogleClick}>
             {
                 loading ?
                     <Spinner aria-label="Alternate spinner button example" size="sm" />
