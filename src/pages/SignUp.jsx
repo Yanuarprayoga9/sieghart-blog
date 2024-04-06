@@ -36,7 +36,7 @@ const SignUp = () => {
 
 
   return (
-    <div className='min-h-screen w-full flex flex-col justify-center items-center p-3'>
+    <div className='min-h-screen w-full mt-[-30px] flex flex-col justify-center items-center px-3'>
       <div className="w-full grid sm:grid-cols-2">
         <div className="mx-auto">
           <PageTitle title={'Sign Up'} />

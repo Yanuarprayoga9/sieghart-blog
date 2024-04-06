@@ -6,14 +6,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import baseUrl from '../../constant/baseUrl';
 import { useForm } from '../../hooks/useForm';
 import OAuth from '../components/Oauth';
+import toast, { Toaster } from 'react-hot-toast';
+
 const SignIn = () => {
   const { values, handleChange } = useForm({ email: '', password: '' });
 
   const dispatch = useDispatch()
   const loading = useSelector((state => state.user.loading))
-  const message = useSelector((state => state.user.message))
+  const error = useSelector((state => state.user.error))
   const navigate = useNavigate();
-
+  const notify = () =>  toast.error("Invalid credentials");
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -27,7 +29,7 @@ const SignIn = () => {
       const data = await res.json();
       localStorage.setItem('access_token', data.token)
       if (data.success === false) {
-        dispatch(signInFailure(data.message));
+        dispatch(signInFailure("Invalid Credentials"));
       }
 
       if (res.ok) {
@@ -35,13 +37,16 @@ const SignIn = () => {
         navigate('/');
       }
     } catch (error) {
-      dispatch(signInFailure('Login Failed'));
+      dispatch(signInFailure('Invalid Credentials'));
 
     }
   }
-
+  console.log(error)
+  
+   if(error ) notify()
+  
   return (
-    <div className='min-h-screen w-full flex flex-col justify-center items-center p-3'>
+    <div className='min-h-screen w-full flex mt-[-30px] flex-col justify-center items-center px-3'>
       <div className="w-full grid sm:grid-cols-2">
         <div className="mx-auto">
           <PageTitle title={'SieghartBlog'} />
@@ -73,14 +78,14 @@ const SignIn = () => {
           </div>
           <ButtonComp type={'submit'} title={'Sign In'} loading={loading} />
           <OAuth />
-          {message && message ?
-            <p className='text-red-400 text-center'>{message}</p>
-            : null}
+
           <Link to='/sign-up'>sign up here</Link>
 
         </form>
 
       </div>
+      <Toaster />
+
     </div>
   )
 }
