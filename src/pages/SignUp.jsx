@@ -7,6 +7,7 @@ import baseUrl from '../../constant/baseUrl';
 import { Navigate } from 'react-router';
 import OAuth from '../components/Oauth';
 import { Link } from 'react-router-dom';
+import { data } from 'autoprefixer';
 const SignUp = () => {
   const { values, handleChange } = useForm({ username: '', email: '', password: '' });
   const [loading, setLoading] = useState(false)
@@ -22,11 +23,16 @@ const SignUp = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
+      const data =await res.json()
+      
       if (res.ok) {
         <Navigate to={'sign-in'} />
       }
+      if (data.success === false) {
+        setMessage('user already registered')
+      }
     } catch (error) {
-      setMessage("something went wrong")
+      setMessage('user already registered')
       setLoading(false)
     } finally {
       setLoading(false)
