@@ -12,6 +12,7 @@ import { AuthRoute } from './components/AuthRoute'
 
 import axios from 'axios';
 import baseUrl from '../constant/baseUrl.js';
+import FooterCom from './components/Footer.jsx'
 
 axios.interceptors.request.use(config => {
   const token = localStorage.getItem("access_token");
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/sign-in" element={<SignIn />} />
         </Route>
       </Routes>
+      <FooterCom />
     </BrowserRouter>
   )
 }
