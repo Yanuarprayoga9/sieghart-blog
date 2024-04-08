@@ -27,7 +27,7 @@ export default function OAuth() {
                 }),
             })
             const data = await res.json()
-
+            localStorage.setItem('access_token',data.token)
             // console.log(data)
             if (res.ok) {
                 dispatch(signInSuccess(data.user))
