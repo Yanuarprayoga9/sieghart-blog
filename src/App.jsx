@@ -14,7 +14,9 @@ import axios from 'axios';
 import baseUrl from '../constant/baseUrl.js';
 import FooterCom from './components/Footer.jsx'
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute.jsx'
-import CreatePost from './pages/CreatePost.jsx'
+import CreatePost from './components/dashboard/CreatePost.jsx'
+import UpdatePost from './components/dashboard/UpdatePost.jsx'
+import PostPage from './pages/PostPage.jsx'
 
 axios.interceptors.request.use(config => {
   const token = localStorage.getItem("access_token");
@@ -28,8 +30,8 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/post/:postSlug" element={<PostPage />} />
         <Route element={<PrivateRoute />} >
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
@@ -39,6 +41,7 @@ export default function App() {
         </Route>
         <Route element={<OnlyAdminPrivateRoute />} >
           <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/update-post/:postId" element={<UpdatePost />} />
         </Route>
       <Route path="*" element={<NotFound />} />
       </Routes>
