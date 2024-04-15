@@ -4,6 +4,8 @@ import Profile from "../components/dashboard/Profile";
 import Posts from "../components/dashboard/Posts";
 import DashSidebar from "../components/dashboard/components/Sidebar";
 import Users from "../components/dashboard/Users";
+import DashComments from "../components/dashboard/Comments";
+import DashboardHome from "../components/dashboard/Home";
 // import { useUsers } from "../../hooks/useUser";
 
 export default function Dashboard() {
@@ -30,9 +32,9 @@ export default function Dashboard() {
     {/* users */}
     {tab === 'users' && <Users />}
     {/* comments  */}
-    {/* {tab === 'comments' && <DashComments />} */}
+    {tab === 'comments' && <DashComments />}
     {/* dashboard comp */}
-    {/* {tab === 'dash' && <DashboardComp />} */}
+    {tab === 'dash' && <DashboardHome />}
   </div>
   )
 }

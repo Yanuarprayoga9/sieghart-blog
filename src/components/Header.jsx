@@ -57,8 +57,12 @@ export default function Header() {
                   <p>{currentUser.email}</p>
                 </div>
               </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item>setting</Dropdown.Item>
+              <Dropdown.Item>
+                <Link to={'/dashboard?tab=profile'} >profile</Link>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Link to={'/dashboard?tab=dashboard'} >dashboard</Link>
+              </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleSignout}>
                 Sign Out

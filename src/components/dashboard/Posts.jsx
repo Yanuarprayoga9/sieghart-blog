@@ -5,6 +5,7 @@ import baseUrl from '../../../constant/baseUrl';
 import { Link } from 'react-router-dom';
 import { getAccessToken } from '../../../constant/getAccessToken';
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import Tittle from './components/Tittle';
 
 const Posts = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -91,7 +92,8 @@ const Posts = () => {
     }
   };
   return (
-    <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
+    <div className='w-full table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
+      <Tittle title={'Dashboard Post'}/>
       {currentUser.isAdmin ? (
         <>
           <Table hoverable className='shadow-md'>
