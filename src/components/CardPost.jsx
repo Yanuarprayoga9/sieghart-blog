@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Suspense } from 'react';
 import { Loading } from './Loading';
 
-export default function PostCard({ post }) {
+export default function CardPost({ post }) {
     const date = new Date(post.createdAt)
     var formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric'});
     return (
-        <div className='group relative w-full  hover:border-2 h-[400px] overflow-hidden rounded-lg sm:w-[300px] transition-all'>
+        <div className='group relative w-full  hover:border-2 min-h-[400px] overflow-hidden rounded-lg border  sm:w-[300px] sm:min-w-[350px] transition-all'>
             <Link to={`/post/${post.slug}`}>
                 <img
                     src={post.image}
@@ -18,7 +18,7 @@ export default function PostCard({ post }) {
             <div className='p-3 flex flex-col gap-2'>
                 <div className="flex justify-between border-b">
                 <p className='text-lg font-semibold line-clamp-2 '>{post.title}</p>
-                <p className='text-lg font-semibold line-clamp-2 opacity-50 text-sm '>{formattedDate}</p>
+                <p className=' font-semibold line-clamp-2 opacity-50 text-sm '>{formattedDate}</p>
 
                 </div>
                 <Suspense fallback={<Loading />}>
@@ -37,6 +37,6 @@ export default function PostCard({ post }) {
 }
 
 
-PostCard.propTypes = {
+CardPost.propTypes = {
     post: PropTypes.object
 }

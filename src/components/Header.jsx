@@ -1,5 +1,5 @@
 import { Button, Navbar, TextInput } from 'flowbite-react';
-import { Link, Navigate, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { Dropdown } from 'flowbite-react';
@@ -8,16 +8,37 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { signOut } from '../redux/user/user-slice';
 import { toggleTheme } from '../redux/theme/theme-slice';
+import { useEffect, useState } from 'react';
 export default function Header() {
-
+  const [searchTerm,setSearchTerm] = useState("");
   const dispatch = useDispatch();
-  const path = useLocation().pathname;
+  const location = useLocation()
+  const path = location.path
   const { currentUser } = useSelector(state => state.user)
   const { theme } = useSelector((state) => state.theme);
+  const navigate = useNavigate()
   const handleSignout = async () => {
     dispatch(signOut());
 
     <Navigate to={'/signin'} />
+  };
+  const onChange  = (e) => { 
+    setSearchTerm(e.target.value )
+  }
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get('searchTerm');
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('searchTerm', searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
   };
   return (
     <Navbar className='border-b-2'>
@@ -28,17 +49,16 @@ export default function Header() {
         SieghartCode
         Blog
       </Link>
-      <form>
+      <form onSubmit={handleSubmit}>
         <TextInput
           type='text'
           placeholder='Search...'
           rightIcon={AiOutlineSearch}
-          className='hidden lg:inline'
+          onChange={onChange}
+          value={searchTerm}
         />
       </form>
-      <Button className='w-12 h-10 lg:hidden' color='gray' pill>
-        <AiOutlineSearch />
-      </Button>
+ 
       <div className='flex gap-2 md:order-2'>
         <Button
           className='w-12 h-10  sm:inline'
@@ -84,8 +104,8 @@ export default function Header() {
         <Navbar.Link active={path === "/about"} as={'div'}>
           <Link to='/about'>About</Link>
         </Navbar.Link>
-        <Navbar.Link active={path === "/projects"} as={'div'}>
-          <Link to='/projects'>Projects</Link>
+        <Navbar.Link active={path === "/contributions"} as={'div'}>
+          <Link to='/contributions'>Contributions</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

@@ -1,4 +1,4 @@
-
+import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import UserProfile from '../components/UserProfile';
 import { useEffect, useState } from 'react';
@@ -7,20 +7,33 @@ import baseUrl from '../../constant/baseUrl';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-
+  const sliderVariants = {
+    initial: {
+      x: 0,
+    },
+    animate: {
+      x: "-220%",
+      transition: {
+        repeat: Infinity,
+        repeatType: "mirror",
+        duration: 20,
+      },
+    },
+  };
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch(baseUrl+'/post/getPosts?limit=8&');
+      const res = await fetch(baseUrl + '/post/getPosts?limit=8&');
       const data = await res.json();
       setPosts(data.posts);
     };
     fetchPosts();
   }, []);
   return (
-    <div className='w-full '>
-      <div className='flex flex-col gap-6 p-28 items-center justify-center px-3 max-w-6xl mx-auto sm:h-[600px]'>
-        <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to my Blog</h1>
-        <p className='text-gray-500 text-xs sm:text-sm'>
+    <div className='w-full'>
+
+      <div className='w-full flex flex-col gap-6 p-28 items-center justify-center px-3  mx-auto sm:h-[600px] banner'>
+        <h1 className='text-white text-3xl font-bold lg:text-6xl'>Welcome to my Blog</h1>
+        <p className='text-blue text-xs sm:text-sm'>
           Here you'll find a variety of articles and tutorials on topics such as
           web development, software engineering, and programming languages.
         </p>
@@ -31,6 +44,7 @@ export default function Home() {
           View all posts
         </Link>
       </div>
+
       <div className='p-3  dark:bg-slate-700'>
         <UserProfile />
       </div>

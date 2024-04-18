@@ -1,7 +1,7 @@
 import { Button } from 'flowbite-react';
 import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
+import {motion} from 'framer-motion'
 export default function UserProfile() {
     const links = [
         {
@@ -42,7 +42,17 @@ export default function UserProfile() {
             </div>
         </div>
         <div className="p-7 flex-1">
-            <img className='sm:w-[500px] mx-auto' src="https://firebasestorage.googleapis.com/v0/b/sighartblog.appspot.com/o/profil.jpg?alt=media&token=f0104778-c3e0-47d4-b39c-1e5e13dccc6d" />
+            <motion.div
+            
+            animate={{
+              
+              borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+            }}
+        
+            >
+
+            <img className='sm:w-[500px] mx-auto rounded-md' src="https://firebasestorage.googleapis.com/v0/b/sighartblog.appspot.com/o/profil.jpg?alt=media&token=f0104778-c3e0-47d4-b39c-1e5e13dccc6d" />
+            </motion.div>
         </div>
     </div>
   )

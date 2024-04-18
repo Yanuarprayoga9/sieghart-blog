@@ -39,3 +39,11 @@ body {
 .dark .post-content a {
   color: red;
 }
+
+.banner{
+  background-image:url(
+    "https://firebasestorage.googleapis.com/v0/b/sighartblog.appspot.com/o/blured2.jpg?alt=media&token=f4462b13-e7c0-41bf-b77f-cd2705202042"
+  );
+    /* Setting background image opacity */
+    background-size: cover;
+}
