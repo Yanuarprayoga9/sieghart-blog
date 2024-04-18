@@ -10,7 +10,7 @@ import { signOut } from '../redux/user/user-slice';
 import { toggleTheme } from '../redux/theme/theme-slice';
 import { useEffect, useState } from 'react';
 export default function Header() {
-  const [searchTerm,setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const location = useLocation()
   const path = location.path
@@ -22,8 +22,8 @@ export default function Header() {
 
     <Navigate to={'/signin'} />
   };
-  const onChange  = (e) => { 
-    setSearchTerm(e.target.value )
+  const onChange = (e) => {
+    setSearchTerm(e.target.value)
   }
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -49,16 +49,19 @@ export default function Header() {
         SieghartCode
         Blog
       </Link>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className=''>
         <TextInput
           type='text'
           placeholder='Search...'
           rightIcon={AiOutlineSearch}
           onChange={onChange}
           value={searchTerm}
+          className='hidden lg:inline'
         />
       </form>
- 
+      <Button className='w-12 h-10 lg:hidden' color='gray' pill onClick={()=> navigate('/search')}>
+        <AiOutlineSearch />
+      </Button>
       <div className='flex gap-2 md:order-2'>
         <Button
           className='w-12 h-10  sm:inline'

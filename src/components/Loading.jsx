@@ -1,8 +1,9 @@
 import React from 'react'
+import { Spinner } from "flowbite-react";
 
 export const Loading = () => {
   return (
-    <div>Loading...</div>
+     <Spinner className='w-full m-auto' aria-label="Extra large spinner  example" size="xl" />
   )
 }
 

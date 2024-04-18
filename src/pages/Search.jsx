@@ -110,7 +110,7 @@ const Search = () => {
         </div>
         <div className=" w-full sm:w-3/4 sm:min-h-screen">
           <p className='p-3 text-3xl border-b-2'>Results</p>
-          {loading && <Loading />}
+          {loading && <div className="w-full h-full m-auto p-24"> <Loading /> </div>}
           {
             posts && posts.length > 0 ?
               (
