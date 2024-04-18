@@ -39,6 +39,14 @@ body {
 .dark .post-content a {
   color: red;
 }
+.post-content pre{
+  background-color: black;
+  color:white;
+  overflow-x: scroll;
+  padding: 20px;
+  border-radius:20px ;
+  margin:10px 0;
+}
 
 .banner{
   background-image:url(
